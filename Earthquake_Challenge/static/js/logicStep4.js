@@ -39,35 +39,8 @@ let map = L.map('mapid', {
 })
 
 // Pass our map layers into our layers control and add the layers control to the map.
-// Create a legend control object.
-let legend = L.control({
-    position: "bottomright"
-  });
-  
-  // Then add all the details for the legend.
-legend.onAdd = function() {
-    const magnitudes = [0, 1, 2, 3, 4, 5];
-    const colors = [
-        "#98ee00",
-        "#d4ee00",
-        "#eecc00",
-        "#ee9c00",
-        "#ea822c",
-        "#ea2c2c"
-    ];
-    let div = L.DomUtil.create("div", "info legend");
+L.control.layers(baseMaps, overlays).addTo(map);
 
-    // Looping through our intervals to generate a label with a colored square for each interval.
-   for (var i = 0; i < magnitudes.length; i++) {
-    console.log(colors[i]);
-    div.innerHTML +=
-      "<i style='background: " + colors[i] + "'></i> " +
-      magnitudes[i] + (magnitudes[i + 1] ? "&ndash;" + magnitudes[i + 1] + "<br>" : "+");
- }
-  return div;
-};
-
-legend.addTo(map);
 
 // Retrieve the earthquake GeoJSON data.
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
@@ -134,10 +107,7 @@ style: styleInfo,
 
     //Then we add the earthquakes
     earthquakes.addTo(map)
-
-    .addTo(tectonicPlates);
 });
-
 
 
 

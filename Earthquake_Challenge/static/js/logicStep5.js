@@ -123,6 +123,7 @@ L.geoJSON(data, {
       console.log(data);
       return L.circleMarker(latlng);
     },
+    
   // We set the style for each circleMarker using our styleInfo function.
 style: styleInfo,
     // We create a popup for each circleMarker to display the magnitude and
@@ -134,8 +135,6 @@ style: styleInfo,
 
     //Then we add the earthquakes
     earthquakes.addTo(map)
-
-    .addTo(tectonicPlates);
 });
 
 
